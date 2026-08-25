@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>临床评分系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <h1>📋 临床评估系统</h1>
+        <p class="subtitle">Clinical Assessment Scoring System</p>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container" id="app">
+        <!-- 疾病选择页 -->
+        <div id="home-page">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 搜索评分系统..." oninput="filterCards()">
+            </div>
+            
+            <div class="card-grid" id="cardGrid">
+                <!-- CAP肺炎 -->
+                <div class="card" onclick="navigateTo('news')">
+                    <div class="card-icon">🫁</div>
+                    <div class="card-content">
+                        <h3>NEWS 评分</h3>
+                        <span class="badge badge-cap">CAP</span>
+                        <p>国家早期预警评分 - 急诊筛查</p>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="navigateTo('curb65')">
+                    <div class="card-icon">🫁</div>
+                    <div class="card-content">
+                        <h3>CURB-65 评分</h3>
+                        <span class="badge badge-cap">CAP</span>
+                        <p>社区获得性肺炎严重程度评估</p>
+                    </div>
+                </div>
+
+                <!-- 重症 -->
+                <div class="card" onclick="navigateTo('apache2')">
+                    <div class="card-icon">🏥</div>
+                    <div class="card-content">
+                        <h3>APACHE II 评分</h3>
+                        <span class="badge badge-icu">重症</span>
+                        <p>急性生理与慢性健康评估</p>
+                    </div>
+                </div>
+
+                <!-- 脓毒症 -->
+                <div class="card" onclick="navigateTo('sofa')">
+                    <div class="card-icon">🦠</div>
+                    <div class="card-content">
+                        <h3>SOFA 评分</h3>
+                        <span class="badge badge-sepsis">脓毒症</span>
+                        <p>序贯器官衰竭评估</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="navigateTo('qsofa')">
+                    <div class="card-icon">🦠</div>
+                    <div class="card-content">
+                        <h3>qSOFA 评分</h3>
+                        <span class="badge badge-sepsis">脓毒症</span>
+                        <p>快速序贯器官衰竭评估</p>
+                    </div>
+                </div>
+
+                <!-- AECOPD -->
+                <div class="card" onclick="navigateTo('mmrc')">
+                    <div class="card-icon">💨</div>
+                    <div class="card-content">
+                        <h3>mMRC 评分</h3>
+                        <span class="badge badge-copd">AECOPD</span>
+                        <p>改良版呼吸困难量表</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="navigateTo('act')">
+                    <div class="card-icon">💨</div>
+                    <div class="card-content">
+                        <h3>ACT 评分</h3>
+                        <span class="badge badge-copd">AECOPD</span>
+                        <p>哮喘控制测试</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 评分表单页 (动态渲染) -->
+        <div id="scoring-page" style="display:none;">
+            <div class="page-header">
+                <button class="btn-back" onclick="goHome()">← 返回</button>
+                <h2 id="scoringTitle"></h2>
+            </div>
+            <form id="scoringForm"></form>
+            <button class="btn-calculate" onclick="calculateScore()">📊 计算评分</button>
+        </div>
+
+        <!-- 结果展示页 -->
+        <div id="result-page" style="display:none;">
+            <div class="result-container">
+                <div class="result-score" id="resultScore"></div>
+                <div class="result-level" id="resultLevel"></div>
+                <div class="result-interpretation" id="resultInterpretation"></div>
+                <div class="result-details" id="resultDetails"></div>
+                <div class="result-pathway" id="resultPathway"></div>
+                <div class="result-actions">
+                    <button class="btn-secondary" onclick="goHome()">🏠 返回首页</button>
+                    <button class="btn-primary" onclick="retryScoring()">🔄 重新评估</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <p>⚠️ 本工具仅供临床参考，不可替代专业医疗判断</p>
+    </footer>
+
+    <script src="js/scoring-engine.js"></script>
+    <script src="js/news.js"></script>
+    <script src="js/curb65.js"></script>
+    <script src="js/sofa.js"></script>
+    <script src="js/qsofa.js"></script>
+    <script src="js/apache2.js"></script>
+    <script src="js/mmrc.js"></script>
+    <script src="js/act.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
